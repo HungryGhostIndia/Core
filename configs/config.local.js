@@ -16,7 +16,6 @@ module.exports = {
     issuer: 'https://hrSystemApi.com'
   },
   database: {
-    mySqlConnection: 'mysql://root:root@localhost/hr_system',
-    defaultRole: 'user',
+    mongoDb: 'mongodb://hungryghost:D3v3l0p3r@ds115799.mlab.com:15799/hungry-ghost',
   }
 };

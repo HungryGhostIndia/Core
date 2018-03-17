@@ -67,7 +67,7 @@ require("./login/passport/setup").setup();
 var server = http.createServer(app).listen(port);
 server.timeout = 10 * 60 * 1000;
 
-mongoose.connect('mongodb://localhost/HungryGhost');
+mongoose.connect(config.database.mongoDb);
 
 
 
