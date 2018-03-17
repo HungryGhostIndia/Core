@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 
 global.mongoose = mongoose;
 require('./models/user');
+
 app.use(passport.initialize());
 
 // Add headers
