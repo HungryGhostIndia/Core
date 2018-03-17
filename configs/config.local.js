@@ -16,6 +16,6 @@ module.exports = {
     issuer: 'https://hrSystemApi.com'
   },
   database: {
-    mongoDb: 'mongodb://hungryghost:D3v3l0p3r@ds115799.mlab.com:15799/hungry-ghost',
+    mongoDb: 'mongodb://localhost/hungry-ghost',
   }
 };
