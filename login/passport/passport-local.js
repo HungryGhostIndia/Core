@@ -2,7 +2,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var passport = require("passport");
 const crypto = require("crypto");
 var bcryptNodejs = require("bcrypt-nodejs");
-var mongoInstance = require('../../models/mongoModels');
 
 exports.setup =  () => {
   passport.use(new LocalStrategy({

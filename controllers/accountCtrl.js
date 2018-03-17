@@ -23,12 +23,12 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  accountService.register(req, (err, users) => {
+  accountService.register(req, (err, data) => {
     if (err) {
         res.status(200).json({error: {message: err}});
     }
     else {
-        res.status(200).json({success: {data: true}})
+        res.status(200).json({success: {data: data}})
     }
   })
 });
