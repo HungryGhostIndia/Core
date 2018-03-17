@@ -9,5 +9,5 @@ var config = {
 }
 
 module.exports = {
-  config: function () { return config[process.env.NODE_ENV] || config.dev; }
+  config: function () { return config[process.env.NODE_ENV] || config.local; }
 }
