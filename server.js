@@ -8,10 +8,9 @@ var bodyParser = require('body-parser');
 var config = require('./config').config();
 var fs = require("fs");
 var passport = require("passport");
-const mongoose = require('mongoose');
 
-global.mongoose = mongoose;
-require('./models/user');
+global.mongoose =  require('mongoose');
+require('./models/mongo.models');
 
 app.use(passport.initialize());
 
