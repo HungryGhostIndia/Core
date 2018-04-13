@@ -18,7 +18,7 @@ router.post("/login", (req, res) => {
       }
     } else {
       data.token = jwt.generateToken(data);
-      res.status(200).json({success: {data}});
+      res.status(200).json({status: 1, data: data});
     }
   });
 });
