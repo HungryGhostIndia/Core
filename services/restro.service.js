@@ -16,8 +16,6 @@ exports.saveRestro = (req, next) =>{
     restro.save((err)=>{
         if (err) next(err, null);
         else {
-            mongoUser.restros.push(restro);
-            mongoUser.save(callback);
             next(null, {id: restro._id, name: restro.name});
         } 
 
