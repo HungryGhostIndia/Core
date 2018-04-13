@@ -1,7 +1,7 @@
 module.exports = {
   'secret': 'ilovescotchyscotch',
   'website': 'http://localhost:4200',
-  'allowedOrigins': ['http://localhost:4200', 'http://localhost:4201', 'http://192.168.1.60:4200'],
+  'allowedOrigins': ['http://localhost:4200', 'http://localhost:4201', 'http://hungryghost.appielife.in'],
   "server": {
     "cert": "./cer.pem",
     "key": "./key.pem",
