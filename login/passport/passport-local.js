@@ -9,13 +9,13 @@ exports.setup =  () => {
       },
        async (req, username, password, done) => {
         try {
-          var user = await mongoUser.findOne({userName: username});
+          var user = await mongoUser.findOne({email: username});
           if(user){
             bcryptNodejs.compare(password, user.password, (err, res) => {
                 if(err)
                   return  done(null, false, {message: err});
                 else if(res)
-                  return done(null, {displayName: user.username,id: user._id});
+                  return done(null, {displayName: user.name, id: user._id});
                 else 
                   return done(null, false, {message: "Invalid credentials"}); 
             });

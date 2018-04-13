@@ -4,16 +4,17 @@ var express = require('express');
 var router = express.Router();
 var jwt = require("../login/jwt/jwtService").jwtProfile;
 var accountService = require("../services/account.service");
+var helperService = require("../services/helper.service");
 
 router.post("/login", (req, res) => {
   passportLocal.authenticate(req, res, (err, data) => {
     if (err) {
-      res.status(200);// set status as per the error message
+      res.status(200);
       if(err.message){  
-        res.json({error: {message: err.message}}); // return a proper error message here
+        res.json({error: {message: err.message}}); 
       }
       else{
-       res.json({error: {message: "something went wrong"}}); // return a proper error message here
+       res.json({error: {message: "something went wrong"}});
       }
     } else {
       data.token = jwt.generateToken(data);
@@ -24,12 +25,7 @@ router.post("/login", (req, res) => {
 
 router.post("/register", (req, res) => {
   accountService.register(req, (err, data) => {
-    if (err) {
-        res.status(200).json({error: {message: err}});
-    }
-    else {
-        res.status(200).json({success: {data: data}})
-    }
+    helperService.createResponse(req, res, err, data);
   })
 });
 
