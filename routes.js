@@ -5,11 +5,12 @@ var pathToRegexp = require('path-to-regexp');
 
 module.exports = function (app) {
   var unprotected = [
-    pathToRegexp('/api/account/*'),
+    pathToRegexp('/api/account/*')
   ];
 
   app.use("/api", expressJwt({secret: secretCycleCallBack}).unless({path: unprotected}));
   app.use('/api/account', require('./controllers/accountCtrl').account);
+  app.use('/api/restro', require('./controllers/restroCtrl').restro);
 };
 
 
