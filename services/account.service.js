@@ -1,8 +1,8 @@
 var config = require('../config').config();
-var bcryptNodejs = require("bcrypt-nodejs");
+var helperService = require("./helper.service");
 
 exports.register = async (req, next) => {
-    let hash = bcryptNodejs.hashSync(req.body.password);
+    let hash = helperService.createHash_bcrypt(req.body.password);
     user = new mongoUser();
 
     user.email = req.body.email;

@@ -9,5 +9,23 @@ router.post("/", (req, res) => {
       helperService.createResponse(req, res, err, data);
     })
 });
+
+router.get("/", (req, res) => {
+  restroService.getRestroDetails(req, (err, data) => {
+    helperService.createResponse(req, res, err, data);
+  })
+});
   
+router.post("/save-section", (req, res) => {
+  restroService.saveSection(req, (err, data) => {
+    helperService.createResponse(req, res, err, data);
+  })
+});
+
+router.post("/save-waiter-credentials", (req, res) => {
+  restroService.saveWaiterCredentials(req, (err, data) => {
+    helperService.createResponse(req, res, err, data);
+  })
+});
+
 module.exports.restro = router;

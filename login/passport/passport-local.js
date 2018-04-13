@@ -9,13 +9,21 @@ exports.setup =  () => {
       },
        async (req, username, password, done) => {
         try {
-          var user = await mongoUser.findOne({email: username});
+          var user;
+          if(req.body.loginType == 2)
+            user = await mongoWaiterCredentials.findOne({user_name: username});  
+          else
+            user = await mongoUser.findOne({email: username});
           if(user){
             bcryptNodejs.compare(password, user.password, (err, res) => {
                 if(err)
                   return  done(null, false, {message: err});
-                else if(res)
-                  return done(null, {displayName: user.name, id: user._id});
+                else if(res){
+                  if(req.body.loginType == 2)
+                    return done(null, {displayName: user.user_name, id: user._id, loginType: req.body.loginType});
+                  else
+                    return done(null, {displayName: user.name, id: user._id, loginType: req.body.loginType});
+                }
                 else 
                   return done(null, false, {message: "Invalid credentials"}); 
             });
