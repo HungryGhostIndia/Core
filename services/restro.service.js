@@ -54,7 +54,7 @@ exports.getRestroDetails = (req, next) => {
         mongoRestroDetail.findOne({ owner: req.user.id }).exec((err, restro) => {
             if (err) next(err, null);
             else{
-                mongoSection.find({restro: restro.restro._id}).exec((err, sections)=>{
+                mongoSection.find({restro: restro._id}).exec((err, sections)=>{
                     if (err) next(err, null);
                     else{ restro.sections = sections;
                         next(null, restro.restro);
