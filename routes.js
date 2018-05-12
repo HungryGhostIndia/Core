@@ -11,6 +11,7 @@ module.exports = function (app) {
   app.use("/api", expressJwt({secret: secretCycleCallBack}).unless({path: unprotected}));
   app.use('/api/account', require('./controllers/accountCtrl').account);
   app.use('/api/restro', require('./controllers/restroCtrl').restro);
+  app.use('/api/section', require('./controllers/sectionCtrl').section);
 };
 
 

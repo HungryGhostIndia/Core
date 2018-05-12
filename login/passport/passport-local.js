@@ -10,7 +10,7 @@ exports.setup =  () => {
        async (req, username, password, done) => {
         try {
           var user;
-          if(req.body.loginType == 2)
+          if(req.body.loginType == 2) //Waiter login
             user = await mongoWaiterCredentials.findOne({user_name: username});  
           else
             user = await mongoUser.findOne({email: username});

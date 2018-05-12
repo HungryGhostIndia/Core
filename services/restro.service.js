@@ -22,20 +22,6 @@ exports.saveRestro = (req, next) =>{
     }); 
 }
 
-exports.saveSection = (req, next) =>{
-    section = new mongoSection();
-
-    section.section_name = req.body.name;
-    section.total_tables = req.body.total_tables;
-    section.table_prefix_name = req.body.table_prefix_name;
-    section.restro = req.body.restroId;
-    
-    section.save((err)=>{
-        if(err) next(err, null);
-        else next(null, {id: section._id, name: section.section_name});
-    }); 
-}
-
 exports.saveWaiterCredentials = (req, next) =>{
     waiterCredentials = new mongoWaiterCredentials();
     let hash = helperService.createHash_bcrypt(req.body.password);
@@ -51,6 +37,7 @@ exports.saveWaiterCredentials = (req, next) =>{
 }
 
 exports.getRestroDetails = (req, next) => {
+    //Waiter login check
     if(req.user.loginType == 2){
         mongoWaiterCredentials.findOne({ _id: req.user.id }).populate('restro').exec((err, data) => {
             if (err) next(err, null);
@@ -67,13 +54,14 @@ exports.getRestroDetails = (req, next) => {
         mongoRestroDetail.findOne({ owner: req.user.id }).exec((err, restro) => {
             if (err) next(err, null);
             else{
-                mongoSection.find({restro: data.restro._id}).exec((err, sections)=>{
+                mongoSection.find({restro: restro.restro._id}).exec((err, sections)=>{
                     if (err) next(err, null);
                     else{ restro.sections = sections;
-                        next(null, data.restro);
+                        next(null, restro.restro);
                     } 
                 })
             } 
         });
     }
 }
+
