@@ -54,12 +54,17 @@ exports.getRestroDetails = (req, next) => {
         mongoRestroDetail.findOne({ owner: req.user.id }).exec((err, restro) => {
             if (err) next(err, null);
             else{
-                mongoSection.find({restro: restro._id}).exec((err, sections)=>{
-                    if (err) next(err, null);
-                    else{ restro.sections = sections;
-                        next(null, restro.restro);
-                    } 
-                })
+                if (restro) {
+                    mongoSection.find({restro: restro._id}).exec((err, sections)=>{
+                        if (err) next(err, null);
+                        else{ restro.sections = sections;
+                            next(null, restro.restro);
+                        } 
+                    })
+                } else {
+                    next({"name": "empty_list", "message": "No restro listed to this user"}, null);
+                }
+
             } 
         });
     }
